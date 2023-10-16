@@ -3,10 +3,10 @@
 #include <UrlEncode.h>
 
 #define sensor 4
-const char* ssid = "Wokwi-GUEST";//Entre o nome da Wi-FI
+const char* ssid = "";//Entre o nome da Wi-FI
 const char* password = ""; //Entre a senha
-String phoneNumber = "5511932229973"; //Coloque o número de telefone completo
-String apiKey = "3307496"; //Coloque o valor que o bot enviou
+String phoneNumber = ""; //Coloque o número de telefone completo
+String apiKey = ""; //Coloque o valor que o bot enviou
 
 void setup() {
   Serial.begin(115200);
