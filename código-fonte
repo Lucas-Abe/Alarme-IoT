@@ -1,0 +1,59 @@
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <UrlEncode.h>
+
+#define sensor 4
+const char* ssid = "Wokwi-GUEST";//Entre o nome da Wi-FI
+const char* password = ""; //Entre a senha
+String phoneNumber = "5511932229973"; //Coloque o número de telefone completo
+String apiKey = "3307496"; //Coloque o valor que o bot enviou
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(sensor, INPUT);
+
+  WiFi.begin(ssid, password);
+  Serial.print("Conectando");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Conectado na Wi-Fi com o endereço IP de ");
+  Serial.println(WiFi.localIP());
+  Serial.println("Conectando-se ao Whatsapp...");
+
+  // Envia mensagem para o Whatsapp
+  sendAlert ("Sistema está pronto para receber mensagens.");
+}
+
+void loop() {
+  bool sensorValue = digitalRead(sensor);
+  if (sensorValue == 1) {
+    Serial.println("Movimento detectado, será enviado uma mensagem.");
+    sendAlert("Seu sensor detectou movimento.");
+  }
+}
+
+void sendAlert(String message) {
+
+  String url = "https://api.callmebot.com/whatsapp.php?phone=" + phoneNumber + "&apikey=" + apiKey + "&text=" + urlEncode(message);
+  HTTPClient http;
+  http.begin(url);
+
+  http.addHeader ("Content-Type", "application/x-www-form-urlencoded");
+
+  int httpResponseCode = http.POST(url);
+  if (httpResponseCode == 200) {
+    delay(500);
+    Serial.print("Uma mensagem foi enviada!\n");
+  }
+  else {
+    Serial.println("Ocorreu um erro enviando a mensagem.");
+    Serial.print("Código da resposta HTTP: ");
+    Serial.println(httpResponseCode);
+  }
+
+  http.end();
+}
