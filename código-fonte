@@ -9,7 +9,7 @@ String phoneNumber = ""; //Coloque o número de telefone completo
 String apiKey = ""; //Coloque o valor que o bot enviou
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200); //Caso o Serial Monitor mostre apenas símbolos, mude o número para 9600
   pinMode(sensor, INPUT);
 
   WiFi.begin(ssid, password);
