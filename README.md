@@ -13,4 +13,4 @@ Componentes necessários:
 ![Anotação 2023-10-16 101940](https://github.com/Lucas-Abe/Alarme-IoT/assets/106618924/3adaab38-edce-4c22-98cf-14085a08f4ce)
 
 Link da apresentação feita a faculdade sobre o projeto:
-https://www.youtube.com/watch?v=NvaDWaLfEec
+https://www.youtube.com/watch?v=yyTj9jcG5tg
